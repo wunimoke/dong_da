@@ -1,0 +1,124 @@
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8">   
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="rkcFSjMKZapFH7qPqKrzZhyaayRcZFetH8CbvY8I">
+    <title>东北大学测温验证平台</title>
+    <link href="./enu.css" rel="stylesheet">
+    <style>
+        @-webkit-keyframes pulse {
+            50% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+        }
+        @keyframes  pulse {
+            50% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+        }
+        .list-group {
+            padding: 1em;
+        }
+        .list-group-item {
+            font-size: 1.4em;
+            padding: 0.1em;
+            border: 0px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function curDateTime() {
+            var d = new Date();
+            var year = d.getYear();
+            var month = d.getMonth() + 1;
+            var date = d.getDate();
+            var day = d.getDay();
+            var hours = d.getHours();
+            var minutes = d.getMinutes();
+            var seconds = d.getSeconds();
+            var ms = d.getMilliseconds();
+            var curDateTime = String(1900 + parseInt(year));
+            if (month > 9)
+                curDateTime = curDateTime + "-" + month;
+            else
+                curDateTime = curDateTime + "-0" + month;
+            if (date > 9)
+                curDateTime = curDateTime + "-" + date;
+            else
+                curDateTime = curDateTime + "-0" + date;
+            if (hours > 9)
+                curDateTime = curDateTime + " " + hours;
+            else
+                curDateTime = curDateTime + "0" + hours;
+            if (minutes > 9)
+                curDateTime = curDateTime + ":" + minutes;
+            else
+                curDateTime = curDateTime + ":0" + minutes;
+            if (seconds > 9)
+                curDateTime = curDateTime + ":" + seconds;
+            else
+                curDateTime = curDateTime + ":0" + seconds;
+            return curDateTime;
+        }
+        function setTime() {
+            document.getElementById("time").innerText = "时间：" + curDateTime();
+        }
+        function setInfo() {
+            document.getElementById("stu-name").innerText = document.getElementById("name").value;
+            document.getElementById("stu-number").innerText = document.getElementById("number").value;
+            document.getElementById("stu-distress").innerText = document.getElementById("distress").value;
+            document.getElementById("input-box").style.display = "none";
+            document.getElementById("app").style.display = "";
+        }
+        </script>
+    </head>
+<body onload="setTime()">
+
+<div class="input-box" id="input-box" style="text-align: center;">
+    <br>
+    <label>访客姓名：<input id="name"></label>
+    <br>
+    <label>身份证号：<input id="number"></label>
+    <br>
+    <label>访客单位：<input id="distress"></label>
+    <br>
+    <button onclick="setInfo()">“进入校园”</button>
+</div>
+
+<div id="app" style="display: none;">
+    <div class="card border-0 text-center" style="color: RGB(42,100,56)">
+        <div class="card-body">
+            <h2 class="card-title p-2">东北大学访客通行验证</h2>
+
+            <div class="animated infinite pulse p-2">
+                <i class="fa fa-arrow-circle-up" style="font-size: 14em;"></i>
+            </div>
+
+            <p class="card-text p-2" style="font-size: 1.4em;" id="time">时间：2021-08-25 12:39:17</p>
+        </div>
+    </div>
+
+    <ul class="list-group list-group-flush" style="background-color: RGB(42,100,56)">
+        <li class="list-group-item bg-transparent d-flex text-white font-weight-bold">
+            <div style="min-width: 4em; text-align-last: justify;">访客姓名</div>：<div id="stu-name"></div>
+        </li>
+        <li class="list-group-item bg-transparent d-flex text-white font-weight-bold">
+            <div style="min-width: 4em; text-align-last: justify;">身份证号</div>：<div id="stu-number"></div>
+        </li>
+        <li class="list-group-item bg-transparent d-flex" style="color: rgba(255, 255, 255, 0.8);">
+            <div style="min-width: 4em; text-align-last: justify;">访客单位</div>：<div id="stu-distress"></div>
+        </li>
+        <li class="list-group-item bg-transparent d-flex" style="color: rgba(255, 255, 255, 0.8);">
+            <div style="min-width: 4em; text-align-last: justify;">申请单位</div>：<div>材料科学与工程学院</div>
+        </li>
+        <li class="list-group-item bg-transparent d-flex" style="color: rgba(255, 255, 255, 0.8);">
+            <div style="min-width: 4em; text-align-last: justify;">验证次数</div>：<div>本次为第 3 次验证</div>
+        </li>
+    </ul>
+</div>
+
+</body></html>
